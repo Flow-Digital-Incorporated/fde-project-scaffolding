@@ -1,0 +1,30 @@
+# ── Secrets — all secrets live in .env, which never goes to git ──────
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials*
+
+# ── OS / editor noise ────────────────────────────────────────────────
+.DS_Store
+
+# ── Build & deps (shouldn't exist here, but just in case) ────────────
+node_modules/
+dist/
+build/
+*.log
+
+# ── Client data never goes to git ────────────────────────────────────
+# This repo is the scaffolding template only; client work lives on
+# Google Drive. Keep the folders, ignore their contents.
+Fathom recordings/*
+!Fathom recordings/.gitkeep
+Assets/*
+!Assets/.gitkeep
+Archive/*
+!Archive/.gitkeep
+
+# ── Machine-local Claude Code state ──────────────────────────────────
+.claude/settings.local.json
