@@ -11,6 +11,7 @@
 > 2. `AskUserQuestion` (multiSelect): apps involved — Airtable, Softr, Zapier, HubSpot; others (Pipedrive, Make, Notion, …) via Other.
 > 3. Per app, in chat: one-line role + links ("TBD" is fine).
 > 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md, build the Stack table, then delete this banner. Verify no `{{` remains in the project. If `.env` is missing (fresh clone), copy `.env.example` to `.env`.
+> 5. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
 
 ## Client
 - **Client:** {{CLIENT_FULL_NAME}}
