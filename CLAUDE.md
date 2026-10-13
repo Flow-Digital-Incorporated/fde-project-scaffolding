@@ -10,7 +10,7 @@
 > 1. Ask in chat: client full name · business name · one-paragraph TLDR · engagement scope · your name (FDE, becomes Engagement lead) · kickoff date (default today).
 > 2. `AskUserQuestion` (multiSelect): apps involved — Airtable, Softr, Zapier, HubSpot; others (Pipedrive, Make, Notion, …) via Other.
 > 3. Per app, in chat: one-line role + links ("TBD" is fine).
-> 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md, build the Stack table, then delete this banner. Verify no `{{` remains in the project. If `.env` is missing (fresh clone), copy `.env.example` to `.env`.
+> 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md, build the Stack table, then delete this banner. Verify no `{{` remains in the project. Then run the "Secrets (.env)" setup below. Never create a real `.env` in this folder.
 > 5. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
 
 ## Client
@@ -34,7 +34,7 @@
 | [TASKS.md](TASKS.md) | All tasks, P0–P3. **New tasks are always created here**, following `.claude/rules/tasks.md`; completed tasks move to its Archive section |
 | [DECISIONS.md](DECISIONS.md) | Decision log — **every decision gets appended with a timestamp, in ascending order** (newest at the bottom) |
 | [MEMORY.md](MEMORY.md) | The important things to remember about this project — client quirks, preferences, gotchas, conventions. Read at session start; add to it as you learn |
-| `.env` | **All secrets live here** — API keys, tokens, webhook secrets. Never in code, specs, or docs; reference by variable name. Gitignored — if missing (fresh clone), copy `.env.example` to `.env` |
+| `.env` | Symlink to the real file at `~/.claude/clients/CLIENT/.env` (outside Google Drive). **All secrets live there** — API keys, tokens, webhook secrets. Never in code, specs, or docs; reference by variable name. If missing or BROKEN, follow "Secrets (.env)" below |
 | `Assets/` | Deliverables. **Empty by default** — folders are created on demand per `.claude/rules/asset-creation.md` |
 | `Archive/` | Where "removed" things go. Nothing is ever deleted — it's moved here |
 | `Fathom recordings/` | Call transcripts, one file per call — handled per `.claude/rules/fathom-recordings.md` |
@@ -58,12 +58,12 @@ This project folder syncs to Google Drive, so real API keys must never be stored
 **Locations**
 - Home folder: `$HOME` on macOS/Linux, `$env:USERPROFILE` on Windows.
 - CLIENT slug: take the project folder name ("First Last - Company"), keep the part after " - ", lowercase it, replace spaces with hyphens, and remove everything except a-z, 0-9 and hyphens. If there is no " - ", ask the user.
-- Real file: `<home>/.claude/clients/CLIENT/.env`
+- Real file: `$HOME/.claude/clients/CLIENT/.env` (Windows: `$env:USERPROFILE\.claude\clients\CLIENT\.env`)
 
 **Setup** (run during onboarding before any other app work, and again whenever the check below reports BROKEN)
 1. Detect the OS. Use Claude Code's file tools (Read/Write) to create folders and files so it works everywhere. Use the shell only for the symlink, deletion, and checks. Claude Code may ask permission to write outside this folder; that is expected.
-2. Create `<home>/.claude/clients/CLIENT/` if it does not exist (macOS/Linux: also `chmod 700`).
-3. If `<home>/.claude/clients/CLIENT/.env` does not exist, create it as an exact copy of this folder's `.env.example` (same lines, comments, and order). If it already exists, do not touch it.
+2. Create `$HOME/.claude/clients/CLIENT/` if it does not exist (macOS/Linux: also `chmod 700`).
+3. If `$HOME/.claude/clients/CLIENT/.env` does not exist, create it as an exact copy of this folder's `.env.example` (same lines, comments, and order). If it already exists, do not touch it.
 4. Handle `.env` in this project folder:
    - Symlink to the correct target: do nothing.
    - Symlink to anywhere else: stop and tell the user.

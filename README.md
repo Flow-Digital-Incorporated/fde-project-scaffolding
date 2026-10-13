@@ -4,9 +4,9 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 
 ## How to start a new client project
 
-1. **Duplicate this entire folder** (the hidden `.claude/` folder must come along — copy the folder itself, not its visible contents). From git: clone, then copy `.env.example` → `.env`.
-2. **Rename the copy**: `{Client Full Name} - {Business Name}`.
-3. **Open Claude Code in it and say "new project".** The `{{...}}` placeholders in `CLAUDE.md` trigger a short onboarding: client basics in chat, apps involved via a multi-select question, links per app. Claude fills everything in and removes the onboarding banner.
+1. **Get a project folder.** Normally the Claim button in #new-project-alerts creates it with a starter CLAUDE.md. Manual: create `First Last - Company` under Clients > your name and paste the scaffolding prompt (see the Project Scaffolding SOP). From git: clone, then run the Secrets (.env) setup in CLAUDE.md.
+2. **Open Claude (Cowork or Claude Code) in that folder and say "this is a new project, scaffold it".**
+3. Claude onboards you and sets up `.env` outside Google Drive, linked into the folder.
 
 ## Structure
 
@@ -16,7 +16,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 ├── TASKS.md               All tasks: P0 → P3 sections + Archive at the bottom
 ├── DECISIONS.md           Decision log — timestamped, ascending, append-only
 ├── MEMORY.md              Important things to remember about the project
-├── .env                   ALL secrets live here (gitignored; created from .env.example)
+├── .env                   Symlink to ~/.claude/clients/CLIENT/.env (real secrets, outside Drive)
 ├── Assets/                Deliverables — empty by default, app folders created on demand
 ├── Archive/               Where "removed" things go; nothing is ever deleted
 ├── Fathom recordings/     Call transcripts, one file per call
