@@ -7,11 +7,14 @@
 - If something truly must be destroyed, flag it to the FDE — a human deletes it manually, never you.
 
 > **TEMPLATE CHECK:** if this file still contains `{{...}}` placeholders, this is a fresh copy of the template — onboard before any other work:
+> > If the placeholders below are already filled in and only this banner remains, skip steps 1 to 4 and resume at step 5.
 > 1. Ask in chat: client full name · business name · one-paragraph TLDR · engagement scope · your name (FDE, becomes Engagement lead) · kickoff date (default today).
 > 2. `AskUserQuestion` (multiSelect): apps involved — Airtable, Softr, Zapier, HubSpot; others (Pipedrive, Make, Notion, …) via Other.
 > 3. Per app, in chat: one-line role + links ("TBD" is fine).
-> 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md, build the Stack table, then delete this banner. Verify no `{{` remains in the project. Then run the "Secrets (.env)" setup below. Never create a real `.env` in this folder.
-> 5. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
+> 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md and build the Stack table. Keep this banner for now.
+> 5. Run the "Secrets (.env)" setup below. Never create a real `.env` in this folder. Do not continue until the check reports OK.
+> 6. Only now delete this banner, then verify no `{{` remains in the project.
+> 7. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
 
 ## Client
 - **Client:** {{CLIENT_FULL_NAME}}
