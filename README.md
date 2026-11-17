@@ -6,7 +6,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 
 1. **Get a project folder.** Normally the Claim button in #new-project-alerts creates it with a starter CLAUDE.md. Manual: create `First Last - Company` under Clients > your name and paste the scaffolding prompt (see the Project Scaffolding SOP). From git: clone, then run the Secrets (.env) setup in CLAUDE.md.
 2. **Open Claude (Cowork or Claude Code) in that folder and say "this is a new project, scaffold it".**
-3. Claude onboards you and sets up `.env` outside Google Drive, linked into the folder.
+3. Claude onboards you and sets up `.env` outside Google Drive, linked into the folder. It holds only `op://` references; every key lives in 1Password.
 
 ## Structure
 
@@ -16,7 +16,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 ├── TASKS.md               All tasks: P0 → P3 sections + Archive at the bottom
 ├── DECISIONS.md           Decision log — timestamped, ascending, append-only
 ├── MEMORY.md              Important things to remember about the project
-├── .env                   Symlink to ~/.claude/clients/CLIENT/.env (real secrets, outside Drive)
+├── .env                   Symlink to ~/.claude/clients/CLIENT/.env (op:// references only, outside Drive)
 ├── Assets/                Deliverables — empty by default, app folders created on demand
 ├── Archive/               Where "removed" things go; nothing is ever deleted
 ├── Fathom recordings/     Call transcripts, one file per call
@@ -32,7 +32,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 
 - **Nothing gets deleted, ever** — files move to `Archive/`; client data in connected tools is never destroyed.
 - **Every code file is `.jsx`**, whatever it contains — Airtable scripts, Softr blocks, Zapier code steps, HTML embeds.
-- **Secrets only ever go in `.env`** — referenced by variable name everywhere else.
+- **Every credential lives in 1Password** (required) — read at run time with the `op` CLI; `.env` holds only `op://` references. See the `secrets-1password` skill (`security-toolkit` plugin).
 - **Tasks** live in `TASKS.md` with AI-assigned P0–P3 priorities; **decisions** in `DECISIONS.md`; **project quirks** in `MEMORY.md`.
 - **Builds go through skills**: `airtable-automation` (automations are "Run a script" scripts, never scripting extensions), `softr-vibe-coding`, `zapier-javascript` / `zapier-python`, `make-skills`, `building-design-md`.
 

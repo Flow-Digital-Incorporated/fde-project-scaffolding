@@ -14,5 +14,5 @@
 | Any other app | `Assets/{App Name}/` |
 
 - Saved code files are **source-of-truth mirrors** of what's deployed inside the tools — after changing either side, update the other and the header date.
-- **Never store API keys, tokens, webhook secrets, or credentials in any asset file** — all secrets go in `.env` at the project root; reference them by variable name.
+- **Never store API keys, tokens, webhook secrets, or credentials in any asset file** — all secrets live in 1Password; reference them by variable name (`.env` at the project root holds only `op://` references).
 - Removing an asset = **moving it to `Archive/`** (see CLAUDE.md). Never deleting it.

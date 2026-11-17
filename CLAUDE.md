@@ -1,5 +1,11 @@
 # CLAUDE.md — {{CLIENT_FULL_NAME}} / {{BUSINESS_NAME}}
 
+## ⚠️ REQUIRED — every credential lives in 1Password
+
+- **All credentials** (API keys, tokens, PATs, passwords, webhook secrets, session cookies) are stored in 1Password and read at run time with the 1Password CLI (`op`). This is a requirement.
+- Never write a credential into this folder, `.env`, code, docs, the chat, Slack or a tool's notes. `.env` holds only `op://` references; run tools with `op run --env-file=.env -- <command>`.
+- Never ask the user to paste a key into the chat: they copy it, and you save the clipboard to 1Password. Follow the `secrets-1password` skill (`security-toolkit` plugin) and the [Client Credentials and Keys SOP](https://docs.superhuman.com/d/Flow-Digital-Main-Hub_deZKBjDZAhI/Client-Credentials-and-Keys-SOP_sunQuD0N).
+
 ## ⚠️ IMPORTANT — nothing gets deleted. Ever.
 
 - **Never delete anything.** No `rm` / `rm -rf` in this project folder, no deleting files or folders, and no deleting client data through MCPs or APIs (Airtable records/tables/bases, Softr pages, CRM records, Zaps, Make scenarios, …).
@@ -37,7 +43,7 @@
 | [TASKS.md](TASKS.md) | All tasks, P0–P3. **New tasks are always created here**, following `.claude/rules/tasks.md`; completed tasks move to its Archive section |
 | [DECISIONS.md](DECISIONS.md) | Decision log — **every decision gets appended with a timestamp, in ascending order** (newest at the bottom) |
 | [MEMORY.md](MEMORY.md) | The important things to remember about this project — client quirks, preferences, gotchas, conventions. Read at session start; add to it as you learn |
-| `.env` | Symlink to the real file at `~/.claude/clients/CLIENT/.env` (outside Google Drive). **All secrets live there** — API keys, tokens, webhook secrets. Never in code, specs, or docs; reference by variable name. If missing or BROKEN, follow "Secrets (.env)" below |
+| `.env` | Symlink to the real file at `~/.claude/clients/CLIENT/.env` (outside Google Drive). It holds **only `op://` references**; the keys themselves live in 1Password. Never put a key in code, specs, or docs; reference it by variable name. If missing or BROKEN, follow "Secrets (.env)" below |
 | `Assets/` | Deliverables. **Empty by default** — folders are created on demand per `.claude/rules/asset-creation.md` |
 | `Archive/` | Where "removed" things go. Nothing is ever deleted — it's moved here |
 | `Fathom recordings/` | Call transcripts, one file per call — handled per `.claude/rules/fathom-recordings.md` |
@@ -56,7 +62,7 @@ All always-on, all short: `tasks.md` · `code-files.md` · `softr.md` · `asset-
 
 ## Secrets (.env)
 
-This project folder syncs to Google Drive, so real API keys must never be stored in it. The real file lives outside Drive, and `.env` in this folder is a symlink to it. Never print, copy, log, or commit key values.
+Keys live in 1Password (see the top of this file). `.env` holds only `op://` references, never a key value. The file lives outside Drive, and `.env` in this folder is a symlink to it. Never print, copy, log, or commit key values.
 
 **Locations**
 - Home folder: `$HOME` on macOS/Linux, `$env:USERPROFILE` on Windows.
@@ -76,7 +82,7 @@ This project folder syncs to Google Drive, so real API keys must never be stored
    - macOS/Linux: `ln -s "$HOME/.claude/clients/CLIENT/.env" .env`
    - Windows (use PowerShell even if the shell is Git Bash, because `ln -s` there makes a copy): `New-Item -ItemType SymbolicLink -Path .env -Target "$env:USERPROFILE\.claude\clients\CLIENT\.env"`
    - If Windows reports a missing privilege, tell the user to turn on Developer Mode (Windows Settings, search "Developer Mode") and retry. Never fall back to a copy or a hard link, and never place a real .env in this folder.
-6. Tell the user to open `.env` and paste their keys. They save to the non-synced file.
+6. For each key: the user copies it, you save the clipboard to 1Password and write its `op://` reference into `.env` (`secrets-1password` skill). Never ask the user to paste a key into `.env` or the chat. If `.env` already holds real keys, move them to 1Password with the skill's "old .env file" steps.
 7. Verify with the check below, without showing contents.
 
 **Check** (before and after any task that edits .env)
