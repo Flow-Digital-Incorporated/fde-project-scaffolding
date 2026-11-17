@@ -1,4 +1,4 @@
-# ── Secrets — all secrets live in .env, which never goes to git ──────
+# ── Secrets live in 1Password; .env (op:// references only) never goes to git ──
 .env
 .env.*
 !.env.example
