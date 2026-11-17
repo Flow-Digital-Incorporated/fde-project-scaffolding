@@ -2,10 +2,15 @@
 
 Flow Digital's template folder for Forward Deployed Engineer client engagements. Copy it once per client; Claude Code reads its `CLAUDE.md` + `.claude/rules/` automatically and works the way we work.
 
+## Before your first project
+
+- **1Password:** the 1Password app, signed in, and the 1Password CLI (`op`): `brew install 1password-cli` on a Mac, `winget install AgileBits.1Password.CLI` on Windows. In the app, turn on **Settings > Developer > Integrate with 1Password CLI**.
+- **Team plugins:** the Flow Digital plugins (`security-toolkit`, `automation-toolkit`, `softr-vibe-coding`, `make-skills`, `zapier`) come from the company's Claude organization. If Claude says a skill such as `secrets-1password` is missing, tell Leo.
+
 ## How to start a new client project
 
 1. **Get a project folder.** Normally the Claim button in #new-project-alerts creates it with a starter CLAUDE.md. Manual: create `First Last - Company` under Clients > your name and paste the scaffolding prompt (see the Project Scaffolding SOP). From git: clone, then run the Secrets (.env) setup in CLAUDE.md.
-2. **Open Claude (Cowork or Claude Code) in that folder and say "this is a new project, scaffold it".**
+2. **Open Claude Code in that folder (never Cowork) and type `Start`.** The starter CLAUDE.md tells Claude to apply this template before any other request, so any first message starts the onboarding. Step-by-step setup with screenshots: [AI/Claude Project Scaffolding SOP](https://coda.io/d/_deZKBjDZAhI/AI-Claude-Project-Scaffolding_suBPVZkm).
 3. Claude onboards you and sets up `.env` outside Google Drive, linked into the folder. It holds only `op://` references; every key lives in 1Password.
 
 ## Structure
@@ -34,7 +39,8 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 - **Every code file is `.jsx`**, whatever it contains — Airtable scripts, Softr blocks, Zapier code steps, HTML embeds.
 - **Every credential lives in 1Password** (required) — read at run time with the `op` CLI; `.env` holds only `op://` references. See the `secrets-1password` skill (`security-toolkit` plugin).
 - **Tasks** live in `TASKS.md` with AI-assigned P0–P3 priorities; **decisions** in `DECISIONS.md`; **project quirks** in `MEMORY.md`.
-- **Builds go through skills**: `airtable-automation` (automations are "Run a script" scripts, never scripting extensions), `softr-vibe-coding`, `zapier-javascript` / `zapier-python`, `make-skills`, `building-design-md`.
+- **Builds go through skills**: `airtable-automation` (automations are "Run a script" scripts, never scripting extensions), `softr-vibe-coding`, `zapier-javascript` / `zapier-python`, `make-skills`. `DESIGN.md` comes from Step 1 of `softr-vibe-coding` (dembrandt), or from the `building-design-md` skill if it is installed.
+- **Model**: Sonnet by default (see the SOP). Softr build work is the exception: Opus runs the session and gives the code to Sonnet subagents.
 
 ## Maintaining the template
 

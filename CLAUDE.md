@@ -18,8 +18,8 @@
 > 2. `AskUserQuestion` (multiSelect): apps involved — Airtable, Softr, Zapier, HubSpot; others (Pipedrive, Make, Notion, …) via Other.
 > 3. Per app, in chat: one-line role + links ("TBD" is fine).
 > 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md and build the Stack table. Keep this banner for now.
-> 5. Run the "Secrets (.env)" setup below. Never create a real `.env` in this folder. Do not continue until the check reports OK.
-> 6. Only now delete this banner, then verify no `{{` remains in the project.
+> 5. Check the 1Password CLI with `op --version`. If it is not found, give the user the install steps from the `secrets-1password` skill and wait. Then run the "Secrets (.env)" setup below. Never create a real `.env` in this folder. Do not continue until the check reports OK.
+> 6. Only now delete this banner, then verify no `{{` remains in the project. Tell the user that the scaffolding is done and that they can now type `/autocompact 500k`.
 > 7. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
 
 ## Client
@@ -47,7 +47,7 @@
 | `Assets/` | Deliverables. **Empty by default** — folders are created on demand per `.claude/rules/asset-creation.md` |
 | `Archive/` | Where "removed" things go. Nothing is ever deleted — it's moved here |
 | `Fathom recordings/` | Call transcripts, one file per call — handled per `.claude/rules/fathom-recordings.md` |
-| `DESIGN.md` | Brand + design tokens — exists once the `building-design-md` skill has run |
+| `DESIGN.md` | Brand + design tokens — made by Step 1 of the `softr-vibe-coding` skill (dembrandt), or by the `building-design-md` skill if it is installed |
 
 ## Build conventions
 - **Every code file is a `.jsx` file** — see `.claude/rules/code-files.md`.
@@ -55,7 +55,7 @@
 - **Softr:** anything Softr goes through the `softr-vibe-coding` skill — see `.claude/rules/softr.md`.
 - **Zapier:** code steps via the `zapier-javascript` skill; `zapier-python` only on explicit request.
 - **Make** (similar tool to Zapier): scenarios via the `make-skills` plugin skills.
-- **Design/brand:** the `building-design-md` skill produces `DESIGN.md`.
+- **Design/brand:** Step 1 of the `softr-vibe-coding` skill makes `DESIGN.md` with dembrandt. The `building-design-md` skill adds more (voice, logos, app patterns) if it is installed.
 
 ## Rules (`.claude/rules/`)
 All always-on, all short: `tasks.md` · `code-files.md` · `softr.md` · `asset-creation.md` · `fathom-recordings.md`
