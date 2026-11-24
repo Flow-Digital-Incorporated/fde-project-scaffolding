@@ -25,6 +25,11 @@ Assets/*
 !Assets/.gitkeep
 Archive/*
 !Archive/.gitkeep
+references/*
+!references/.gitkeep
+!references/archive/
+references/archive/*
+!references/archive/.gitkeep
 
 # ── Machine-local Claude Code state ──────────────────────────────────
 .claude/settings.local.json

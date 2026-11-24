@@ -12,4 +12,4 @@ Pull a transcript via the Fathom MCP, or accept one pasted into chat and write i
 
 ## Using transcripts
 
-When a new transcript lands, offer to mine it: action items → TASKS.md (with this file as `Source:` per the tasks rule), decisions → DECISIONS.md, notable facts → MEMORY.md.
+When a new transcript lands, offer to mine it: action items → tasks (a row in TASKS.md, and this file as `Source:` in the task's reference section, per the tasks rule), decisions → DECISIONS.md, notable facts → MEMORY.md.
