@@ -17,9 +17,9 @@
 > 1. Ask in chat: client full name · business name · one-paragraph TLDR · engagement scope · your name (FDE, becomes Engagement lead) · kickoff date (default today).
 > 2. `AskUserQuestion` (multiSelect): apps involved — Airtable, Softr, Zapier, HubSpot; others (Pipedrive, Make, Notion, …) via Other.
 > 3. Per app, in chat: one-line role + links ("TBD" is fine).
-> 4. Fill every placeholder here and in TASKS.md / DECISIONS.md / MEMORY.md and build the Stack table. Keep this banner for now.
+> 4. Fill every placeholder here and in TASKS.md / TASKS-archive.md / DECISIONS.md / MEMORY.md and build the Stack table. In TASKS.md: `{{FDE_FIRST_NAME}}` is the FDE's first name; `{{TASK_PREFIXES}}` is GEN plus one prefix per Stack app, from "Prefixes and areas" in `.claude/rules/tasks.md`; `{{TASK_NEXT_FREE}}` is `<PREFIX>-01` for each. Keep this banner for now.
 > 5. Check the 1Password CLI with `op --version`. If it is not found, give the user the install steps from the `secrets-1password` skill and wait. Then run the "Secrets (.env)" setup below. Never create a real `.env` in this folder. Do not continue until the check reports OK.
-> 6. Only now delete this banner, then verify no `{{` remains in the project. Tell the user that the scaffolding is done and that they can now type `/autocompact 500k`.
+> 6. Only now delete this banner, then verify no `{{` remains in the project and run the task check (`python3 -I .claude/scripts/tasks.py check .`; skip it if Python 3 is not installed). Tell the user that the scaffolding is done and that they can now type `/autocompact 500k`.
 > 7. Setup template found at: https://github.com/Flow-Digital-Incorporated/fde-project-scaffolding
 
 ## Client
@@ -40,12 +40,14 @@
 ## Folder overview
 | Location | What it is |
 |---|---|
-| [TASKS.md](TASKS.md) | All tasks, P0–P3. **New tasks are always created here**, following `.claude/rules/tasks.md`; completed tasks move to its Archive section |
+| [TASKS.md](TASKS.md) | Open tasks: one table per priority (P0 to P3), one row per task, fixed IDs. **New tasks always start here**, following `.claude/rules/tasks.md` |
+| [TASKS-archive.md](TASKS-archive.md) | Done and cancelled tasks: one table, newest first. A task is never deleted |
+| `references/` | Task details: one file per area (`references/airtable.md`), one section per task ID. `references/archive/` holds the sections of done tasks |
 | [DECISIONS.md](DECISIONS.md) | Decision log — **every decision gets appended with a timestamp, in ascending order** (newest at the bottom) |
 | [MEMORY.md](MEMORY.md) | The important things to remember about this project — client quirks, preferences, gotchas, conventions. Read at session start; add to it as you learn |
 | `.env` | Symlink to the real file at `~/.claude/clients/CLIENT/.env` (outside Google Drive). It holds **only `op://` references**; the keys themselves live in 1Password. Never put a key in code, specs, or docs; reference it by variable name. If missing or BROKEN, follow "Secrets (.env)" below |
 | `Assets/` | Deliverables. **Empty by default** — folders are created on demand per `.claude/rules/asset-creation.md` |
-| `Archive/` | Where "removed" things go. Nothing is ever deleted — it's moved here |
+| `Archive/` | Where "removed" things go. Nothing is ever deleted — it's moved here. Done tasks go to TASKS-archive.md, not here |
 | `Fathom recordings/` | Call transcripts, one file per call — handled per `.claude/rules/fathom-recordings.md` |
 | `DESIGN.md` | Brand + design tokens — made by Step 1 of the `softr-vibe-coding` skill (dembrandt), or by the `building-design-md` skill if it is installed |
 
@@ -59,6 +61,8 @@
 
 ## Rules (`.claude/rules/`)
 All always-on, all short: `tasks.md` · `code-files.md` · `softr.md` · `asset-creation.md` · `fathom-recordings.md`
+
+**Tasks:** follow `.claude/rules/tasks.md`. After each change to a task file, run `python3 -I .claude/scripts/tasks.py check .` and fix what it lists.
 
 ## Secrets (.env)
 

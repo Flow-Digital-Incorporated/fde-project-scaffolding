@@ -18,15 +18,20 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 ```
 ├── CLAUDE.md              Project context, loaded every session — no-deletion rule,
 │                          client/stack info, folder overview, per-app build conventions
-├── TASKS.md               All tasks: P0 → P3 sections + Archive at the bottom
+├── TASKS.md               Open tasks: one table per priority (P0 to P3), fixed IDs
+├── TASKS-archive.md       Done and cancelled tasks: one table, newest first
+├── references/            Task details: one file per area, one section per task ID
+│   └── archive/           Sections of done and cancelled tasks
 ├── DECISIONS.md           Decision log — timestamped, ascending, append-only
 ├── MEMORY.md              Important things to remember about the project
 ├── .env                   Symlink to ~/.claude/clients/CLIENT/.env (op:// references only, outside Drive)
 ├── Assets/                Deliverables — empty by default, app folders created on demand
 ├── Archive/               Where "removed" things go; nothing is ever deleted
 ├── Fathom recordings/     Call transcripts, one file per call
+├── .claude/scripts/
+│   └── tasks.py           Task file check: python3 -I .claude/scripts/tasks.py check .
 └── .claude/rules/         Always-on working rules:
-    ├── tasks.md             P0–P3 task management, task format, archiving
+    ├── tasks.md             Task files: table format, IDs, prefixes, add, close, archive
     ├── code-files.md        Every code file is .jsx, with a deployment header
     ├── softr.md             Softr work always via the softr-vibe-coding skill
     ├── asset-creation.md    App → folder mapping; folders created on first asset
@@ -38,10 +43,13 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 - **Nothing gets deleted, ever** — files move to `Archive/`; client data in connected tools is never destroyed.
 - **Every code file is `.jsx`**, whatever it contains — Airtable scripts, Softr blocks, Zapier code steps, HTML embeds.
 - **Every credential lives in 1Password** (required) — read at run time with the `op` CLI; `.env` holds only `op://` references. See the `secrets-1password` skill (`security-toolkit` plugin).
-- **Tasks** live in `TASKS.md` with AI-assigned P0–P3 priorities; **decisions** in `DECISIONS.md`; **project quirks** in `MEMORY.md`.
+- **Tasks**: open work in `TASKS.md` (one table per priority, P0 to P3, fixed IDs such as `AIR-03`, the FDE's rows first), done work in `TASKS-archive.md`, details in `references/`. Format and steps: `.claude/rules/tasks.md`. **Decisions** go in `DECISIONS.md`; **project quirks** in `MEMORY.md`.
 - **Builds go through skills**: `airtable-automation` (automations are "Run a script" scripts, never scripting extensions), `softr-vibe-coding`, `zapier-javascript` / `zapier-python`, `make-skills`. `DESIGN.md` comes from Step 1 of `softr-vibe-coding` (dembrandt), or from the `building-design-md` skill if it is installed.
 - **Model**: Sonnet by default (see the SOP). Softr build work is the exception: Opus runs the session and gives the code to Sonnet subagents.
 
 ## Maintaining the template
 
-This repo is the source of truth for the scaffolding. Client engagements are copies on Google Drive and are never pushed here — the `.gitignore` ignores `Assets/`, `Archive/`, and `Fathom recordings/` contents as a safety net. Edit, commit, push; then refresh the Drive master from here.
+This repo is the source of truth for the scaffolding. Client engagements are copies on Google Drive and are never pushed here — the `.gitignore` ignores `Assets/`, `Archive/`, `Fathom recordings/` and `references/` contents as a safety net. Edit, commit, push; then refresh the Drive master from here.
+
+- **Task files** use the same format as the `task-management` skill (Leo's own projects). `.claude/scripts/tasks.py` is a copy of that skill's `scripts/tasks.py`: when one changes, copy it to the other, then run `python3 -I .claude/scripts/tasks.py check .` here (0 problems on the empty template).
+- **Projects made before 2026-11-24** have the old `TASKS.md` (`### <task>` entries and an Archive section). To move one: copy in `.claude/rules/tasks.md`, `.claude/scripts/tasks.py`, `TASKS-archive.md` and `references/`, update its `CLAUDE.md` folder overview, and ask Claude to convert `TASKS.md` ("Old format" in `.claude/rules/tasks.md`).
