@@ -13,6 +13,6 @@
 | Embeds outside the stack apps | `Assets/Custom HTML/` |
 | Any other app | `Assets/{App Name}/` |
 
-- Saved code files are **source-of-truth mirrors** of what's deployed inside the tools — after changing either side, update the other and the header date.
+- Saved code files are **source-of-truth mirrors** of what's deployed inside the tools — after changing either side, update the other and the `last_matched` date (`.claude/rules/code-files.md`).
 - **Never store API keys, tokens, webhook secrets, or credentials in any asset file** — all secrets live in 1Password; reference them by variable name (`.env` at the project root holds only `op://` references).
 - Removing an asset = **moving it to `Archive/`** (see CLAUDE.md). Never deleting it.
