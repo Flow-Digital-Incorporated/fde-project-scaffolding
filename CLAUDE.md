@@ -52,7 +52,7 @@
 | `DESIGN.md` | Brand + design tokens — made by Step 1 of the `softr-vibe-coding` skill (dembrandt), or by the `building-design-md` skill if it is installed |
 
 ## Build conventions
-- **Every code file is a `.jsx` file** — see `.claude/rules/code-files.md`.
+- **Code assets are `.mdx` files:** frontmatter, a short header and the deployed code in a fence — see `.claude/rules/code-files.md`. A file a tool runs or deploys from disk keeps that tool's extension (local Node scripts are `.jsx`).
 - **Airtable:** automations are **Automation "Run a script" scripts — never scripting extensions**. Build them with the `airtable-automation` skill.
 - **Softr:** anything Softr goes through the `softr-vibe-coding` skill — see `.claude/rules/softr.md`.
 - **Zapier:** code steps via the `zapier-javascript` skill; `zapier-python` only on explicit request.

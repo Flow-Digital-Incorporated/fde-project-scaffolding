@@ -32,7 +32,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 │   └── tasks.py           Task file check: python3 -I .claude/scripts/tasks.py check .
 └── .claude/rules/         Always-on working rules:
     ├── tasks.md             Task files: table format, IDs, prefixes, add, close, archive
-    ├── code-files.md        Every code file is .jsx, with a deployment header
+    ├── code-files.md        Code assets are .mdx: header, then the code in a fence
     ├── softr.md             Softr work always via the softr-vibe-coding skill
     ├── asset-creation.md    App → folder mapping; folders created on first asset
     └── fathom-recordings.md Transcripts pasted by the FDE by default (saves tokens)
@@ -41,7 +41,7 @@ Flow Digital's template folder for Forward Deployed Engineer client engagements.
 ## House conventions (the short version)
 
 - **Nothing gets deleted, ever** — files move to `Archive/`; client data in connected tools is never destroyed.
-- **Every code file is `.jsx`**, whatever it contains — Airtable scripts, Softr blocks, Zapier code steps, HTML embeds.
+- **Every code asset is `.mdx`** — Airtable scripts, Softr blocks, Zapier code steps, HTML embeds: frontmatter and a short header (what it does, where it's deployed, the date it last matched), then the code in a fence. A file a tool runs from disk keeps that tool's extension (Node scripts are `.jsx`).
 - **Every credential lives in 1Password** (required) — read at run time with the `op` CLI; `.env` holds only `op://` references. See the `secrets-1password` skill (`security-toolkit` plugin).
 - **Tasks**: open work in `TASKS.md` (one table per priority, P0 to P3, fixed IDs such as `AIR-03`, the FDE's rows first), done work in `TASKS-archive.md`, details in `references/`. Format and steps: `.claude/rules/tasks.md`. **Decisions** go in `DECISIONS.md`; **project quirks** in `MEMORY.md`.
 - **Builds go through skills**: `airtable-automation` (automations are "Run a script" scripts, never scripting extensions), `softr-vibe-coding`, `zapier-javascript` / `zapier-python`, `make-skills`. `DESIGN.md` comes from Step 1 of `softr-vibe-coding` (dembrandt), or from the `building-design-md` skill if it is installed.
